@@ -13,6 +13,36 @@
   <meta name="author" content="" />
 
   <title>MOVIE THEATRES</title>
+  <style>
+    .notification-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: none;
+    }
+    
+    .notification-container.show {
+        display: block;
+    }
+    
+    .notification-content {
+        display: flex;
+        align-items: center;
+    }
+    
+    .notification-message {
+        flex-grow: 1;
+    }
+    
+    .notification-cancel {
+        cursor: pointer;
+    }
+    </style>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -472,6 +502,36 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
+  <div class="notification-container" id="notification">
+    <div class="notification-content">
+        <div class="notification-message">    </div>
+        <div class="notification-cancel" onclick="cancelAd()"> addtheadd.com ads Click hear Don't Miss The Offers</div>
+    </div>
+</div>
+
+<script>
+let notifications = document.getElementById('notification');
+let ads = ['https://beautyparlourads.netlify.app',  'https://swimmingpool23.netlify.app','https://functionhallads.netlify.app']; // Deep link URLs of ads
+let currentIndex = 0;
+
+function displayAd() {
+    notifications.classList.add('show');
+    setTimeout(hideAd, 10000); // Hide ad after 10 seconds
+}
+
+function hideAd() {
+    notifications.classList.remove('show');
+    currentIndex = (currentIndex + 1) % ads.length;
+    setTimeout(displayAd, 10000); // Display next ad after 10 seconds
+}
+
+function cancelAd() {
+    window.location.href = ads[currentIndex];
+}
+
+displayAd(); // Start displaying ads
+</script>
+
 
 </body>
 
